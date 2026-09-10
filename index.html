@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Attendance Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">School Management</p>
+        <h1>Student Attendance</h1>
+        <p class="subtitle">Simple, fast and local attendance tracking.</p>
+      </div>
+      <div class="today-box">
+        <span>Today</span>
+        <strong id="todayDate">—</strong>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="stats-grid" aria-label="Today's attendance summary">
+        <article class="stat-card">
+          <span class="stat-label">Total Students</span>
+          <strong id="totalStudents">0</strong>
+        </article>
+        <article class="stat-card present-card">
+          <span class="stat-label">Present</span>
+          <strong id="presentStudents">0</strong>
+        </article>
+        <article class="stat-card absent-card">
+          <span class="stat-label">Absent</span>
+          <strong id="absentStudents">0</strong>
+        </article>
+        <article class="stat-card attendance-card">
+          <span class="stat-label">Attendance %</span>
+          <strong id="attendancePercentage">0%</strong>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Add Student</h2>
+            <p>Add a student to your attendance list.</p>
+          </div>
+        </div>
+
+        <form id="studentForm" class="student-form">
+          <input type="hidden" id="editStudentId">
+          <div class="field">
+            <label for="studentName">Student Name</label>
+            <input id="studentName" type="text" placeholder="e.g. Arun Kumar" required maxlength="60">
+          </div>
+          <div class="field">
+            <label for="rollNumber">Roll Number</label>
+            <input id="rollNumber" type="text" placeholder="e.g. 101" required maxlength="20">
+          </div>
+          <div class="field">
+            <label for="studentClass">Class</label>
+            <input id="studentClass" type="text" placeholder="e.g. BCA 2nd Year" required maxlength="40">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn primary" id="saveStudentBtn">Add Student</button>
+            <button type="button" class="btn secondary hidden" id="cancelEditBtn">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading table-heading">
+          <div>
+            <h2>Student List</h2>
+            <p>Mark today's attendance for each student.</p>
+          </div>
+          <div class="search-box">
+            <label class="sr-only" for="searchInput">Search students</label>
+            <input id="searchInput" type="search" placeholder="Search name, roll no. or class">
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Roll No.</th>
+                <th>Class</th>
+                <th>Today's Status</th>
+                <th>Attendance</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="studentTableBody"></tbody>
+          </table>
+          <div id="emptyState" class="empty-state">
+            <div class="empty-icon">👨‍🎓</div>
+            <h3>No students yet</h3>
+            <p>Add your first student using the form above.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Student Attendance Management • Data is stored in this browser using LocalStorage.</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
